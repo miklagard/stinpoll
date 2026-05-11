@@ -247,7 +247,8 @@ LOGGING = {
 
 
 CSRF_TRUSTED_ORIGINS = [
-    'https://stinpoll.com',
+    'https://api.stinpoll.com',
+    'https://stinpoll.com'
 ]
 
 CSRF_COOKIE_SECURE = True
