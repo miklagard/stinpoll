@@ -153,7 +153,6 @@ EMAIL_HOST_PASSWORD = config.get('EMAIL_HOST_PASSWORD')
 
 AUTH_USER_MODEL = 'backend.CustomUser'
 
-
 CORS_ALLOWED_ORIGINS = config.get('CORS_ALLOWED_ORIGINS', 'http://localhost:5173').split(',')
 CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOW_METHODS = [
@@ -179,7 +178,7 @@ CORS_ALLOW_HEADERS = [
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.TokenAuthentication',
-        'rest_framework.authentication.SessionAuthentication',
+        # 'rest_framework.authentication.SessionAuthentication',
     ],
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.AllowAny',
