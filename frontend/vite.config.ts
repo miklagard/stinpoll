@@ -70,7 +70,13 @@ export default defineConfig({
     },
     
     // Minify ayarları
-    minify: 'esbuild',
+    minify: 'terser',
+    terserOptions: {
+      compress: {
+        drop_console: true, // Production'da console.log'ları kaldır
+        drop_debugger: true,
+      },
+    },
   },
   
   // Bundle analizi için (opsiyonel)
