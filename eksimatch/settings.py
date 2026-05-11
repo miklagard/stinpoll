@@ -146,7 +146,7 @@ MEDIA_ROOT = BASE_DIR / 'media'
 # Email ayarları (Gmail örneği)
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = config.get('EMAIL_HOST')
-EMAIL_PORT = config.get('EMAIL_PORN')
+EMAIL_PORT = config.get('EMAIL_PORT')
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = config.get('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = config.get('EMAIL_HOST_PASSWORD')
