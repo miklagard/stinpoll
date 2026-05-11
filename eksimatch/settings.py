@@ -74,8 +74,6 @@ TEMPLATES = [
     },
 ]
 
-print(TEMPLATES)
-
 WSGI_APPLICATION = 'eksimatch.wsgi.application'
 
 
@@ -131,7 +129,8 @@ USE_TZ = True
 STATIC_URL = 'assets/'
 
 STATICFILES_DIRS = [
-    BASE_DIR / 'frontend' / 'dist' / 'assets'
+    BASE_DIR / 'frontend' / 'dist' / 'assets',
+    BASE_DIR / 'staticfiles'
 ]
 
 # Default primary key field type
