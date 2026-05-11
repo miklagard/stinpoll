@@ -70,9 +70,7 @@ export default defineConfig({
     },
     
     // Minify ayarları
-    minify: 'terser',
-    terserOptions: {
-    },
+    minify: 'esbuild',
   },
   
   // Bundle analizi için (opsiyonel)
