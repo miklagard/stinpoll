@@ -244,3 +244,12 @@ LOGGING = {
     },
 }
 """
+
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://stinpoll.com',
+]
+
+CSRF_COOKIE_SECURE = True
+CSRF_COOKIE_HTTPONLY = True
+CSRF_USE_SESSIONS = True  # CSRF token'ı session'da sakla
