@@ -17,6 +17,9 @@ from .serializers import (
     ProfilePhotoSerializer
 )
 import logging
+from django.middleware.csrf import get_token
+from django.http import JsonResponse
+
 
 logger = logging.getLogger(__name__)
 User = get_user_model()
@@ -400,3 +403,9 @@ def get_user_profile(request):
             {'error': 'Profil bulunamadı.'},
             status=status.HTTP_404_NOT_FOUND
         )
+    
+@api_view(['GET'])
+@permission_classes([permissions.AllowAny])
+def get_csrf_token(request):
+    """CSRF token'ı döndür"""
+    return JsonResponse({'csrfToken': get_token(request)})

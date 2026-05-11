@@ -15,4 +15,5 @@ urlpatterns = [
     path('set-password/<uuid:token>/', views.set_password_and_login, name='set-password'),
     path('delete-account/<uuid:token>/', views.delete_account, name='delete'),
     path('my-profile/', views.get_user_profile, name='my-profile'),
+    path('csrf-token/', views.get_csrf_token, name='csrf-token'),
 ]

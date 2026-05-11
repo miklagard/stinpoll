@@ -6,9 +6,11 @@ import axios from 'axios';
 
 const apiClient = axios.create({
   baseURL: API_BASE_URL,
-  timeout: 10000,
+  timeout: 30000,
+  withCredentials: true,  // Cookie'leri gönder
   headers: {
     'Content-Type': 'application/json',
+    'X-Requested-With': 'XMLHttpRequest',
   },
 });
 
@@ -52,5 +54,33 @@ export const API_ENDPOINTS = {
   PROFILE_DETAIL: (id: string) => `/api/profiles/${id}/`,
   SET_PRIMARY_PHOTO: (id: string) => `/api/profiles/${id}/set_primary_photo/`,
 };
+
+function getCookie(name: string): string | null {
+  const value = `; ${document.cookie}`;
+  const parts = value.split(`; ${name}=`);
+  if (parts.length === 2) return parts.pop()?.split(';').shift() || null;
+  return null;
+}
+
+
+apiClient.interceptors.request.use(
+  (config) => {
+    // CSRF token'ı ekle
+    const csrfToken = getCookie('csrftoken');
+    if (csrfToken) {
+      config.headers['X-CSRFToken'] = csrfToken;
+    }
+    
+    // Token varsa ekle
+    const token = localStorage.getItem('token');
+    if (token && !config.url?.includes('/register/')) {
+      config.headers.Authorization = `Token ${token}`;
+    }
+    
+    return config;
+  },
+  (error) => Promise.reject(error)
+);
+
 
 export default apiClient;

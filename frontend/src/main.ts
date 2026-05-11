@@ -14,6 +14,8 @@ import RegisterPage from './views/RegisterPage.vue';
 import ProfilePage from './views/ProfilePage.vue';
 import LoginPage from './views/LoginPage.vue';
 import VerifyEmail from './views/VerifyEmail.vue';
+import apiClient from './config/api';
+
 
 const vuetify = createVuetify({
   components,
@@ -100,6 +102,19 @@ router.beforeEach((to, _from) => {
   
   return true;
 });
+
+async function initializeCsrf() {
+  try {
+    await apiClient.get('/api/csrf-token/');
+    // CSRF token otomatik olarak cookie'ye set edilir
+    console.log('CSRF token alındı');
+  } catch (error) {
+    console.error('CSRF token alınamadı:', error);
+  }
+}
+
+// Uygulama başlangıcında çağırın
+initializeCsrf();
 
 const app = createApp(App);
 
