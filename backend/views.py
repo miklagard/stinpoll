@@ -19,6 +19,7 @@ from .serializers import (
 import logging
 from django.middleware.csrf import get_token
 from django.http import JsonResponse
+from dotenv import dotenv_values
 
 
 logger = logging.getLogger(__name__)
@@ -121,6 +122,9 @@ def register_user(request):
     - Doğrulama emaili gönderir
     """
     serializer = UserRegistrationSerializer(data=request.data)
+
+    config = dotenv_values(settings.BASE_DIR / '.env')
+
     if serializer.is_valid():
         user = serializer.save()
         
@@ -128,8 +132,9 @@ def register_user(request):
         token = VerificationToken.objects.create(user=user)
         
         # Email içeriği
-        verification_url = f"http://localhost:5173/verify/{token.token}"
-        delete_url = f"http://localhost:8000/delete-account/{token.token}"
+        domain = config.get('DOMAIN')
+        verification_url = f"{domain}/verify/{token.token}"
+        delete_url = f"http://{domain}/delete-account/{token.token}"
         
         # Email gönder
         try:
