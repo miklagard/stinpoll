@@ -103,9 +103,12 @@ router.beforeEach((to, _from) => {
   return true;
 });
 
+
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000';
+
 async function initializeCsrf() {
   try {
-    await apiClient.get('/api/csrf-token/');
+    await apiClient.get(API_BASE_URL + '/csrf-token/');
     // CSRF token otomatik olarak cookie'ye set edilir
     console.log('CSRF token alındı');
   } catch (error) {
