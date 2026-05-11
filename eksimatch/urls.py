@@ -22,9 +22,8 @@ from . import views
 
 
 urlpatterns = [
-    path('', views.frontpage, name='front-page'), 
     path('admin/', admin.site.urls),
-    path('api/', include('backend.urls')),
+    path('', include('backend.urls')),
 ]
 
 if settings.DEBUG:
