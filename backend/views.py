@@ -129,7 +129,7 @@ def register_user(request):
         
         # Email içeriği
         verification_url = f"http://localhost:5173/verify/{token.token}"
-        delete_url = f"http://localhost:8000/api/delete-account/{token.token}"
+        delete_url = f"http://localhost:8000/delete-account/{token.token}"
         
         # Email gönder
         try:

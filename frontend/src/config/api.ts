@@ -43,16 +43,16 @@ apiClient.interceptors.response.use(
 // API endpoint'leri
 export const API_ENDPOINTS = {
   // Auth
-  REGISTER: '/api/register/',
-  LOGIN: '/api/login/',
-  VERIFY_EMAIL: (token: string) => `/api/verify/${token}/`,
-  SET_PASSWORD: (token: string) => `/api/set-password/${token}/`,
-  DELETE_ACCOUNT: (token: string) => `/api/delete-account/${token}/`,
+  REGISTER: '/register/',
+  LOGIN: '/login/',
+  VERIFY_EMAIL: (token: string) => `/verify/${token}/`,
+  SET_PASSWORD: (token: string) => `/set-password/${token}/`,
+  DELETE_ACCOUNT: (token: string) => `/delete-account/${token}/`,
   
   // Profile
-  PROFILES: '/api/profiles/',
-  PROFILE_DETAIL: (id: string) => `/api/profiles/${id}/`,
-  SET_PRIMARY_PHOTO: (id: string) => `/api/profiles/${id}/set_primary_photo/`,
+  PROFILES: '/profiles/',
+  PROFILE_DETAIL: (id: string) => `/profiles/${id}/`,
+  SET_PRIMARY_PHOTO: (id: string) => `/profiles/${id}/set_primary_photo/`,
 };
 
 function getCookie(name: string): string | null {
