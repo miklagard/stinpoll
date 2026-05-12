@@ -3,7 +3,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 import App from './App.vue';
 
 // Vuetify
-import 'vuetify/styles';
+import 'vuetify/dist/vuetify.min.css'; // veya 'vuetify/styles'
 import { createVuetify } from 'vuetify';
 import * as components from 'vuetify/components';
 import * as directives from 'vuetify/directives';
@@ -15,7 +15,6 @@ import ProfilePage from './views/ProfilePage.vue';
 import LoginPage from './views/LoginPage.vue';
 import VerifyEmail from './views/VerifyEmail.vue';
 import apiClient from './config/api';
-
 
 const vuetify = createVuetify({
   components,
@@ -38,23 +37,15 @@ const vuetify = createVuetify({
     }
   },
   defaults: {
-    VBtn: {
-      rounded: 'lg',
-    },
-    VTextField: {
-      variant: 'outlined',
-      density: 'comfortable',
-    },
-    VSelect: {
-      variant: 'outlined',
-      density: 'comfortable',
-    },
-    VCard: {
-      rounded: 'lg',
-      elevation: 2,
-    }
+    VBtn: { rounded: 'lg' },
+    VTextField: { variant: 'outlined', density: 'comfortable' },
+    VSelect: { variant: 'outlined', density: 'comfortable' },
+    VCard: { rounded: 'lg', elevation: 2 },
   }
 });
+
+// Varsayılan title
+const DEFAULT_TITLE = '🍋 Stinpoll';
 
 const router = createRouter({
   history: createWebHistory(),
@@ -63,13 +54,13 @@ const router = createRouter({
       path: '/',
       name: 'home',
       component: HomePage,
-      meta: { title: 'Stinpoll' }
+      meta: { title: '🍋 Stinpoll - Eşleşme Platformu' }
     },
     {
       path: '/register',
       name: 'register',
       component: RegisterPage,
-      meta: { title: 'Stinpoll - Kayıt' } 
+      meta: { title: 'Kayıt Ol - 🍋 Stinpoll' }
     },
     {
       path: '/profile',
@@ -77,7 +68,7 @@ const router = createRouter({
       component: ProfilePage,
       meta: { 
         requiresAuth: true,
-        title: 'Stinpoll - Profilin'
+        title: 'Profilim - 🍋 Stinpoll'
       }
     },
     {
@@ -85,17 +76,18 @@ const router = createRouter({
       name: 'verify',
       component: VerifyEmail,
       props: true,
-      meta: { title: 'Stinpoll' }
+      meta: { title: 'Email Doğrulama - 🍋 Stinpoll' }
     },
     {
       path: '/login',
       name: 'login',
       component: LoginPage,
-      meta: { title: 'Stinpoll - Giriş'}
+      meta: { title: 'Giriş Yap - 🍋 Stinpoll' }
     }
   ]
 });
 
+// Kimlik doğrulama kontrolü
 router.beforeEach((to, _from) => {
   const token = localStorage.getItem('token');
   
@@ -110,21 +102,27 @@ router.beforeEach((to, _from) => {
   return true;
 });
 
+// SAYFA BAŞLIĞINI GÜNCELLE - afterEach EKLENDİ
+router.afterEach((to) => {
+  const title = to.meta.title as string;
+  document.title = title || DEFAULT_TITLE;
+});
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000';
-
+// CSRF token alma (baseURL zaten apiClient'te tanımlı)
 async function initializeCsrf() {
   try {
-    await apiClient.get(API_BASE_URL + 'csrf-token/');
-    // CSRF token otomatik olarak cookie'ye set edilir
+    // apiClient baseURL'i zaten içeriyor, tekrar eklemeye gerek yok
+    await apiClient.get('/csrf-token/');
     console.log('CSRF token alındı');
   } catch (error) {
     console.error('CSRF token alınamadı:', error);
   }
 }
 
-// Uygulama başlangıcında çağırın
-initializeCsrf();
+// CSRF token'ı al (production'da gerekebilir)
+if (import.meta.env.PROD) {
+  initializeCsrf();
+}
 
 const app = createApp(App);
 
