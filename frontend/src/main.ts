@@ -62,29 +62,36 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
-      component: HomePage
+      component: HomePage,
+      meta: { title: 'Stinpoll' }
     },
     {
       path: '/register',
       name: 'register',
-      component: RegisterPage
+      component: RegisterPage,
+      meta: { title: 'Stinpoll - Kayıt' } 
     },
     {
       path: '/profile',
       name: 'profile',
       component: ProfilePage,
-      meta: { requiresAuth: true }
+      meta: { 
+        requiresAuth: true,
+        title: 'Stinpoll - Profilin'
+      }
     },
     {
       path: '/verify/:token',
       name: 'verify',
       component: VerifyEmail,
-      props: true
+      props: true,
+      meta: { title: 'Stinpoll' }
     },
     {
       path: '/login',
       name: 'login',
-      component: LoginPage
+      component: LoginPage,
+      meta: { title: 'Stinpoll - Giriş'}
     }
   ]
 });
