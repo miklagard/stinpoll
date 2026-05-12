@@ -280,6 +280,6 @@ class VerificationTokenAdmin(admin.ModelAdmin):
 
 
 # Admin panel özelleştirmeleri
-admin.site.site_header = '🍋 EkşiMatch Admin Paneli'
-admin.site.site_title = 'EkşiMatch Yönetim'
+admin.site.site_header = '🍋 Stinpoll Admin Paneli'
+admin.site.site_title = 'Stinpoll Yönetim'
 admin.site.index_title = 'Yönetim Paneli'

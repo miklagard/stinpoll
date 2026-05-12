@@ -5,7 +5,7 @@
       <v-container class="d-flex align-center">
         <v-app-bar-title>
           <router-link to="/" class="text-white text-decoration-none font-weight-bold">
-            🍋  EkşiMatch
+            🍋  Stinpoll
           </router-link>
         </v-app-bar-title>
         
