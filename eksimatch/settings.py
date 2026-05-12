@@ -26,7 +26,7 @@ config = dotenv_values(BASE_DIR / '.env')
 SECRET_KEY = config.get('DJANGO_SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = config.get('DEBUG') == 'True'
 
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'stinpoll.com', 'api.stinpoll.com']
 
