@@ -139,7 +139,7 @@ def register_user(request):
         # Email gönder
         try:
             send_mail(
-                'Hesap Doğrulama - Çöpçatan',
+                'Hesap Doğrulama - Stinpoll',
                 f'''Merhaba,
                 
 Hesabınızı doğrulamak için aşağıdaki linke tıklayın:
@@ -414,3 +414,33 @@ def get_user_profile(request):
 def get_csrf_token(request):
     """CSRF token'ı döndür"""
     return JsonResponse({'csrfToken': get_token(request)})
+
+
+@api_view(['DELETE'])
+@permission_classes([permissions.AllowAny])
+def delete_account(request, token):
+    """
+    Hesap silme - DELETE metodu ile
+    """
+    try:
+        verification = VerificationToken.objects.get(token=token)
+        user = verification.user
+        
+        # Kullanıcı bilgilerini logla
+        user_email = user.email
+        user_id = user.id
+        
+        # Kullanıcıyı sil (CASCADE ile profil ve fotoğraflar da silinir)
+        user.delete()
+        
+        logger.info(f"Hesap silindi: {user_email} (ID: {user_id})")
+        
+        return Response(
+            {'message': 'Hesabınız başarıyla silindi.'},
+            status=status.HTTP_200_OK
+        )
+    except VerificationToken.DoesNotExist:
+        return Response(
+            {'error': 'Geçersiz silme linki.'},
+            status=status.HTTP_404_NOT_FOUND
+        )

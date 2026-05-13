@@ -85,6 +85,13 @@ const router = createRouter({
       component: VerifyEmail,
       props: true,
     },
+    {
+      path: '/delete-account/:token',
+      name: 'delete-account',
+      component: DeleteAccount,
+      props: true,
+      meta: { title: 'Hesap Silme - 🍋 Stinpoll' }
+    },
   ],
 });
 
