@@ -14,6 +14,7 @@ import RegisterPage from './views/RegisterPage.vue';
 import ProfilePage from './views/ProfilePage.vue';
 import LoginPage from './views/LoginPage.vue';
 import VerifyEmail from './views/VerifyEmail.vue';
+import DeleteAccount from './views/DeleteAccount.vue';
 import apiClient from './config/api';
 
 const vuetify = createVuetify({
@@ -83,6 +84,12 @@ const router = createRouter({
       name: 'login',
       component: LoginPage,
       meta: { title: 'Giriş Yap - 🍋 Stinpoll' }
+    },
+    {
+      path: '/delete-account/:token',
+      name: 'delete-account',
+      component: DeleteAccount,
+      meta: { title: 'Hesap Silme - 🍋 Stinpoll' }
     }
   ]
 });

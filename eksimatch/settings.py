@@ -153,7 +153,6 @@ EMAIL_HOST_PASSWORD = config.get('EMAIL_HOST_PASSWORD')
 
 AUTH_USER_MODEL = 'backend.CustomUser'
 
-CORS_ALLOWED_ORIGINS = config.get('CORS_ALLOWED_ORIGINS', 'http://localhost:5173').split(',')
 CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOW_METHODS = [
     'DELETE',
@@ -198,7 +197,7 @@ REST_FRAMEWORK = {
     'DATE_FORMAT': '%Y-%m-%d',
 }
 
-"""
+
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
@@ -220,7 +219,7 @@ LOGGING = {
         },
         'file': {
             'class': 'logging.FileHandler',
-            'filename': BASE_DIR / 'logs' / 'django.log',
+            'filename': '/var/log/stinpoll.api.log',
             'formatter': 'verbose',
             'level': 'WARNING',
         },
@@ -242,13 +241,20 @@ LOGGING = {
         },
     },
 }
-"""
 
 
-CSRF_TRUSTED_ORIGINS = [
-    'https://api.stinpoll.com',
-    'https://stinpoll.com'
-]
+if DEBUG:
+    CORS_ALLOW_ALL_ORIGINS = True
+    CORS_ALLOWED_ORIGINS = []  # ALLOW_ALL_ORIGINS ile çakışmasın
+else:
+    CORS_ALLOWED_ORIGINS = config.get('CORS_ALLOWED_ORIGINS', 'http://localhost:5173').split(',')
+
+    CSRF_TRUSTED_ORIGINS = [
+        'https://api.stinpoll.com',
+        'https://stinpoll.com',
+        'http://localhost:5173',
+        'http://127.0.0.1:5173'
+    ]
 
 CSRF_COOKIE_SECURE = True
 CSRF_COOKIE_HTTPONLY = True
