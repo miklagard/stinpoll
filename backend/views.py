@@ -134,7 +134,7 @@ def register_user(request):
         # Email içeriği
         domain = config.get('DOMAIN')
         verification_url = f"{domain}/verify/{token.token}"
-        delete_url = f"http://{domain}/delete-account/{token.token}"
+        delete_url = f"{domain}/delete-account/{token.token}"
         
         # Email gönder
         try:

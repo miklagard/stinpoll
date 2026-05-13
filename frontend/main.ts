@@ -15,6 +15,8 @@ const RegisterPage = () => import('./views/RegisterPage.vue');
 const LoginPage = () => import('./views/LoginPage.vue');
 const ProfilePage = () => import('./views/ProfilePage.vue');
 const VerifyEmail = () => import('./views/VerifyEmail.vue');
+const DeleteAccount = () => import('./views/DeleteAccount.vue');
+
 
 const vuetify = createVuetify({
   components,
