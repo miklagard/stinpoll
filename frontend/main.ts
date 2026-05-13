@@ -9,13 +9,12 @@ import * as components from 'vuetify/components';
 import * as directives from 'vuetify/directives';
 import '@mdi/font/css/materialdesignicons.css';
 
-// Doğrudan import yerine lazy loading kullanın
-const HomePage = () => import('./views/HomePage.vue');
-const RegisterPage = () => import('./views/RegisterPage.vue');
-const LoginPage = () => import('./views/LoginPage.vue');
-const ProfilePage = () => import('./views/ProfilePage.vue');
-const VerifyEmail = () => import('./views/VerifyEmail.vue');
-const DeleteAccount = () => import('./views/DeleteAccount.vue');
+const HomePage = () => import('@/views/HomePage.vue');
+const RegisterPage = () => import('@/views/RegisterPage.vue');
+const LoginPage = () => import('@/views/LoginPage.vue');
+const ProfilePage = () => import('@/views/ProfilePage.vue');
+const VerifyEmail = () => import('@/views/VerifyEmail.vue');
+const DeleteAccount = () => import('@/views/DeleteAccount.vue');
 
 
 const vuetify = createVuetify({
