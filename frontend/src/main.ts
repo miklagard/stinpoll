@@ -46,7 +46,7 @@ const vuetify = createVuetify({
 });
 
 // Varsayılan title
-const DEFAULT_TITLE = '🍋 Stinpoll';
+const DEFAULT_TITLE = 'Stinpoll';
 
 const router = createRouter({
   history: createWebHistory(),
@@ -55,13 +55,13 @@ const router = createRouter({
       path: '/',
       name: 'home',
       component: HomePage,
-      meta: { title: '🍋 Stinpoll - Eşleşme Platformu' }
+      meta: { title: 'Stinpoll - Eşleşme Platformu' }
     },
     {
       path: '/register',
       name: 'register',
       component: RegisterPage,
-      meta: { title: 'Kayıt Ol - 🍋 Stinpoll' }
+      meta: { title: 'Kayıt Ol - Stinpoll' }
     },
     {
       path: '/profile',
@@ -69,7 +69,7 @@ const router = createRouter({
       component: ProfilePage,
       meta: { 
         requiresAuth: true,
-        title: 'Profilim - 🍋 Stinpoll'
+        title: 'Profilim - Stinpoll'
       }
     },
     {
@@ -77,19 +77,19 @@ const router = createRouter({
       name: 'verify',
       component: VerifyEmail,
       props: true,
-      meta: { title: 'Email Doğrulama - 🍋 Stinpoll' }
+      meta: { title: 'Email Doğrulama - Stinpoll' }
     },
     {
       path: '/login',
       name: 'login',
       component: LoginPage,
-      meta: { title: 'Giriş Yap - 🍋 Stinpoll' }
+      meta: { title: 'Giriş Yap - Stinpoll' }
     },
     {
       path: '/delete-account/:token',
       name: 'delete-account',
       component: DeleteAccount,
-      meta: { title: 'Hesap Silme - 🍋 Stinpoll' }
+      meta: { title: 'Hesap Silme -  Stinpoll' }
     }
   ]
 });

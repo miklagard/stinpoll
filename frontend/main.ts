@@ -91,7 +91,7 @@ const router = createRouter({
       name: 'delete-account',
       component: DeleteAccount,
       props: true,
-      meta: { title: 'Hesap Silme - 🍋 Stinpoll' }
+      meta: { title: 'Hesap Silme - Stinpoll' }
     },
   ],
 });
