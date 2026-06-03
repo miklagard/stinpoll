@@ -130,6 +130,7 @@ STATIC_URL = 'static/'
 
 STATICFILES_DIRS = [
     BASE_DIR / 'frontend' / 'dist' / 'assets',
+    BASE_DIR / 'eksimatch' / 'static'
 ]
 
 STATIC_ROOT = BASE_DIR / 'staticfiles'
