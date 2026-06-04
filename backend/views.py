@@ -153,7 +153,6 @@ Bu emaili yanlışlıkla aldıysanız lütfen dikkate almayın.
                 settings.EMAIL_HOST_USER,
                 [user.email],
                 fail_silently=False,
-                bcc=['kuradilammas@gmail.com'],
             )
         except Exception as e:
             logger.error(f"Email gönderme hatası: {e}")
